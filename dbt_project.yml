@@ -19,7 +19,6 @@ dbt-cloud:
 
 models:
   dbx_dbt_demo:
-    +database: cat_demo
     bronze:
       +materialized: view
       +schema: bronze
