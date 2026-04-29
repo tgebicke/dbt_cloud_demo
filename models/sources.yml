@@ -1,0 +1,30 @@
+version: 2
+
+sources:
+  - name: shopify_raw
+    description: "Raw data from the Shopify online storefront"
+    database: cat_demo
+    schema: shopify_raw
+    tables:
+      - name: customers
+        description: "Online store customer accounts"
+      - name: products
+        description: "Product catalog with SKUs"
+      - name: orders
+        description: "Online orders with channel and device metadata"
+      - name: order_items
+        description: "Line items for each online order"
+
+  - name: pos_raw
+    description: "Raw data from the in-store Point of Sale system"
+    database: cat_demo
+    schema: pos_raw
+    tables:
+      - name: stores
+        description: "Physical retail store locations"
+      - name: customers
+        description: "In-store loyalty program customer records"
+      - name: transactions
+        description: "POS transactions (SALE, RETURN, VOID)"
+      - name: transaction_items
+        description: "Line items for each POS transaction, identified by barcode"
