@@ -7,8 +7,8 @@ with shopify_products as (
 ),
 
 -- SKU-to-barcode mapping (POS uses barcodes, Shopify uses SKUs)
-barcode_mapping (sku, barcode) as (
-    select sku, barcode from values
+barcode_mapping as (
+    select * from values
         ('SKU-FOOT-001', '700100000001'),
         ('SKU-FIT-001',  '700100000002'),
         ('SKU-ELEC-001', '700100000003'),
@@ -29,6 +29,7 @@ barcode_mapping (sku, barcode) as (
         ('SKU-FIT-003',  '700100000018'),
         ('SKU-FOOT-003', '700100000019'),
         ('SKU-HOME-004', '700100000020')
+    as t(sku, barcode)
 )
 
 select

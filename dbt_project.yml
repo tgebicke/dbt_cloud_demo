@@ -15,7 +15,7 @@ clean-targets:
   - "dbt_packages"
 
 dbt-cloud:
-  project-id: 70471823580508
+  project-id: 70471823580913
 
 models:
   dbx_dbt_demo:
