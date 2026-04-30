@@ -2,6 +2,7 @@ target/
 dbt_packages/
 logs/
 .DS_Store
+.vscode/
 
 # Never commit credentials
 dbt_cloud.yml
