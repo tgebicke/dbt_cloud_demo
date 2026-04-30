@@ -6,3 +6,4 @@ logs/
 # Never commit credentials
 dbt_cloud.yml
 profiles.yml
+dbt_internal_packages/
