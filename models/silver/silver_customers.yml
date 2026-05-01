@@ -6,6 +6,8 @@ models:
     config:
       contract:
         enforced: true
+      meta:
+        pii_columns: [email, first_name, last_name, phone]
     columns:
       - name: customer_key
         description: "Surrogate key. Stable integer assigned to each unique person across both sources."

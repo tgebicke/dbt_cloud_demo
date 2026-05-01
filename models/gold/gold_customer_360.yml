@@ -6,6 +6,8 @@ models:
     config:
       contract:
         enforced: true
+      meta:
+        pii_columns: [first_name, last_name, email, phone]
     columns:
       - name: customer_key
         description: "Surrogate key from silver_customers. One row per unique customer."

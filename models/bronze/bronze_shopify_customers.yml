@@ -6,6 +6,8 @@ models:
     config:
       contract:
         enforced: true
+      meta:
+        pii_columns: [email, first_name, last_name, phone]
     columns:
       - name: customer_id
         description: "Shopify-assigned unique customer identifier."

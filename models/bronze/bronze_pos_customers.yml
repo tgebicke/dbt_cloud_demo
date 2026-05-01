@@ -6,6 +6,8 @@ models:
     config:
       contract:
         enforced: true
+      meta:
+        pii_columns: [first_name, last_name, phone, loyalty_card_number]
     columns:
       - name: customer_id
         description: "POS-assigned unique customer identifier. Separate ID space from Shopify."

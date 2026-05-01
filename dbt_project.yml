@@ -22,6 +22,7 @@ models:
     +persist_docs:
       relation: true
       columns: true
+    +post-hook: "{{ set_column_tags() }}"
     bronze:
       +materialized: view
       +schema: bronze
