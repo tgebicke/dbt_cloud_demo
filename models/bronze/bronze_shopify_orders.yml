@@ -48,3 +48,18 @@ models:
         data_type: string
         constraints:
           - type: not_null
+      - name: _ingested_at
+        description: "Timestamp when this record was last read from the source by dbt."
+        data_type: timestamp
+        constraints:
+          - type: not_null
+      - name: _metadata_file_path
+        description: "Path of the underlying Delta file containing this record."
+        data_type: string
+        constraints:
+          - type: not_null
+      - name: _metadata_file_modified_at
+        description: "Last modification time of the underlying Delta file."
+        data_type: timestamp
+        constraints:
+          - type: not_null
