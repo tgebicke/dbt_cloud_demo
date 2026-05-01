@@ -24,7 +24,7 @@ models:
       columns: true
     +post-hook: "{{ set_column_tags() }}"
     bronze:
-      +materialized: view
+      +materialized: table
       +schema: bronze
     silver:
       +materialized: table
