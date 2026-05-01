@@ -2,7 +2,7 @@ version: 2
 
 models:
   - name: bronze_pos_customers
-    description: "POS loyalty program customer records. No email — phone is the cross-channel matching key."
+    description: "{{ doc('bronze_pos_customers') }}"
     config:
       contract:
         enforced: true

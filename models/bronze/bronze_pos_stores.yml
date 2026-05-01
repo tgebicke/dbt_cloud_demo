@@ -2,7 +2,7 @@ version: 2
 
 models:
   - name: bronze_pos_stores
-    description: "POS retail store locations. Light rename of source columns with _source tag added."
+    description: "{{ doc('bronze_pos_stores') }}"
     config:
       contract:
         enforced: true

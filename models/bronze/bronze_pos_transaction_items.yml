@@ -2,7 +2,7 @@ version: 2
 
 models:
   - name: bronze_pos_transaction_items
-    description: "POS transaction line items. Products identified by barcode; name captured at time of sale."
+    description: "{{ doc('bronze_pos_transaction_items') }}"
     config:
       contract:
         enforced: true

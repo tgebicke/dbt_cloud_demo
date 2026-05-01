@@ -2,7 +2,7 @@ version: 2
 
 models:
   - name: bronze_pos_transactions
-    description: "POS transactions across all store locations. Includes SALE, RETURN, and VOID types. Timestamps are in local store time."
+    description: "{{ doc('bronze_pos_transactions') }}"
     config:
       contract:
         enforced: true

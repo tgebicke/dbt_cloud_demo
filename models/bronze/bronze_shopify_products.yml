@@ -2,7 +2,7 @@ version: 2
 
 models:
   - name: bronze_shopify_products
-    description: "Shopify product catalog. Light rename of source columns with a _source tag added."
+    description: "{{ doc('bronze_shopify_products') }}"
     config:
       contract:
         enforced: true

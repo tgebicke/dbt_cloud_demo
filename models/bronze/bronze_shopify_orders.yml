@@ -2,7 +2,7 @@ version: 2
 
 models:
   - name: bronze_shopify_orders
-    description: "Shopify orders. Light rename of source columns with channel metadata and _source tag."
+    description: "{{ doc('bronze_shopify_orders') }}"
     config:
       contract:
         enforced: true
