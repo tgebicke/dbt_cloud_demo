@@ -1,0 +1,44 @@
+version: 2
+
+models:
+  - name: bronze_pos_transaction_items
+    description: "POS transaction line items. Products identified by barcode; name captured at time of sale."
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: transaction_item_id
+        description: "Unique transaction line item identifier."
+        data_type: int
+        constraints:
+          - type: not_null
+      - name: transaction_id
+        description: "Foreign key to transactions."
+        data_type: int
+        constraints:
+          - type: not_null
+      - name: barcode
+        description: "Product barcode scanned at register. Maps to Shopify SKUs in silver_products."
+        data_type: string
+        constraints:
+          - type: not_null
+      - name: product_name_at_sale
+        description: "Product name at time of sale. May include promotional suffixes cleaned in silver_order_lines."
+        data_type: string
+        constraints:
+          - type: not_null
+      - name: quantity
+        description: "Number of units in this line item."
+        data_type: int
+        constraints:
+          - type: not_null
+      - name: unit_price
+        description: "Price per unit in USD. Negative for return line items."
+        data_type: decimal(5,2)
+        constraints:
+          - type: not_null
+      - name: _source
+        description: "Source system identifier. Always 'pos' for this model."
+        data_type: string
+        constraints:
+          - type: not_null

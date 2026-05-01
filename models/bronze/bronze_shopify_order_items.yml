@@ -1,0 +1,44 @@
+version: 2
+
+models:
+  - name: bronze_shopify_order_items
+    description: "Shopify order line items. Light rename of source columns with SKU denormalized and _source tag added."
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: order_item_id
+        description: "Unique line item identifier."
+        data_type: int
+        constraints:
+          - type: not_null
+      - name: order_id
+        description: "Foreign key to orders."
+        data_type: int
+        constraints:
+          - type: not_null
+      - name: product_id
+        description: "Foreign key to products."
+        data_type: int
+        constraints:
+          - type: not_null
+      - name: sku
+        description: "SKU of the product at time of purchase."
+        data_type: string
+        constraints:
+          - type: not_null
+      - name: quantity
+        description: "Number of units purchased."
+        data_type: int
+        constraints:
+          - type: not_null
+      - name: unit_price
+        description: "Price per unit at time of purchase in USD."
+        data_type: decimal(5,2)
+        constraints:
+          - type: not_null
+      - name: _source
+        description: "Source system identifier. Always 'shopify' for this model."
+        data_type: string
+        constraints:
+          - type: not_null

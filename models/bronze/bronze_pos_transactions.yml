@@ -1,0 +1,52 @@
+version: 2
+
+models:
+  - name: bronze_pos_transactions
+    description: "POS transactions across all store locations. Includes SALE, RETURN, and VOID types. Timestamps are in local store time."
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: transaction_id
+        description: "Unique transaction identifier. Separate ID space from Shopify order IDs."
+        data_type: int
+        constraints:
+          - type: not_null
+      - name: store_id
+        description: "Foreign key to the store where the transaction occurred."
+        data_type: int
+        constraints:
+          - type: not_null
+      - name: register_id
+        description: "Register terminal identifier (e.g. REG-1A)."
+        data_type: string
+        constraints:
+          - type: not_null
+      - name: cashier_id
+        description: "Employee identifier for the cashier (e.g. EMP-021)."
+        data_type: string
+        constraints:
+          - type: not_null
+      - name: customer_id
+        description: "Foreign key to POS customers. Nullable for walk-in guests."
+        data_type: int
+      - name: transaction_type
+        description: "Type of transaction: SALE, RETURN, or VOID."
+        data_type: string
+        constraints:
+          - type: not_null
+      - name: local_transaction_timestamp
+        description: "Transaction timestamp in local store time as a string (e.g. '2023-01-18 14:35:00'). Cast to timestamp in the silver layer."
+        data_type: string
+        constraints:
+          - type: not_null
+      - name: total_amount
+        description: "Total transaction amount in USD. Negative for RETURN transactions."
+        data_type: decimal(5,2)
+        constraints:
+          - type: not_null
+      - name: _source
+        description: "Source system identifier. Always 'pos' for this model."
+        data_type: string
+        constraints:
+          - type: not_null

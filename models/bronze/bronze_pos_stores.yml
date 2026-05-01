@@ -1,0 +1,44 @@
+version: 2
+
+models:
+  - name: bronze_pos_stores
+    description: "POS retail store locations. Light rename of source columns with _source tag added."
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: store_id
+        description: "Unique store identifier."
+        data_type: int
+        constraints:
+          - type: not_null
+      - name: store_name
+        description: "Store display name."
+        data_type: string
+        constraints:
+          - type: not_null
+      - name: city
+        description: "City where the store is located."
+        data_type: string
+        constraints:
+          - type: not_null
+      - name: state_code
+        description: "Two-letter US state code."
+        data_type: string
+        constraints:
+          - type: not_null
+      - name: country
+        description: "Two-letter ISO country code."
+        data_type: string
+        constraints:
+          - type: not_null
+      - name: opened_at
+        description: "Timestamp when the store opened."
+        data_type: timestamp
+        constraints:
+          - type: not_null
+      - name: _source
+        description: "Source system identifier. Always 'pos' for this model."
+        data_type: string
+        constraints:
+          - type: not_null

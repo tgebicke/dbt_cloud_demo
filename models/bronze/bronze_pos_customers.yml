@@ -1,0 +1,49 @@
+version: 2
+
+models:
+  - name: bronze_pos_customers
+    description: "POS loyalty program customer records. No email — phone is the cross-channel matching key."
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: customer_id
+        description: "POS-assigned unique customer identifier. Separate ID space from Shopify."
+        data_type: int
+        constraints:
+          - type: not_null
+      - name: first_name
+        description: "Customer first name."
+        data_type: string
+        constraints:
+          - type: not_null
+      - name: last_name
+        description: "Customer last name."
+        data_type: string
+        constraints:
+          - type: not_null
+      - name: phone
+        description: "Customer phone number. Cross-channel matching key with Shopify."
+        data_type: string
+        constraints:
+          - type: not_null
+      - name: loyalty_card_number
+        description: "Physical loyalty card number (format: LC-XXXXX)."
+        data_type: string
+        constraints:
+          - type: not_null
+      - name: home_store_id
+        description: "Foreign key to the store where the customer enrolled."
+        data_type: int
+        constraints:
+          - type: not_null
+      - name: created_at
+        description: "Timestamp when the loyalty account was created."
+        data_type: timestamp
+        constraints:
+          - type: not_null
+      - name: _source
+        description: "Source system identifier. Always 'pos' for this model."
+        data_type: string
+        constraints:
+          - type: not_null
