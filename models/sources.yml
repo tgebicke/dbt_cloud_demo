@@ -78,7 +78,7 @@ sources:
                     values: ['Footwear', 'Fitness', 'Electronics', 'Accessories', 'Clothing', 'Home']
           - name: price
             description: "List price in USD."
-            data_type: double
+            data_type: decimal(5,2)
             tests:
               - not_null
           - name: is_active
@@ -183,7 +183,7 @@ sources:
               - not_null
           - name: unit_price
             description: "Price per unit at time of purchase in USD."
-            data_type: double
+            data_type: decimal(5,2)
             tests:
               - not_null
 
@@ -312,13 +312,13 @@ sources:
                   arguments:
                     values: ['SALE', 'RETURN', 'VOID']
           - name: local_transaction_timestamp
-            description: "Timestamp of the transaction in local store time. Not UTC — timezone conversion is applied in the silver layer."
-            data_type: timestamp
+            description: "Timestamp of the transaction in local store time as a string (e.g. '2023-01-18 14:35:00'). Cast to timestamp in the silver layer."
+            data_type: string
             tests:
               - not_null
           - name: total_amount
             description: "Total transaction amount in USD. Negative for RETURN transactions."
-            data_type: double
+            data_type: decimal(5,2)
             tests:
               - not_null
 
@@ -357,6 +357,6 @@ sources:
               - not_null
           - name: unit_price
             description: "Price per unit at time of sale in USD. Negative for return line items."
-            data_type: double
+            data_type: decimal(5,2)
             tests:
               - not_null
