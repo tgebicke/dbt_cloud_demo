@@ -19,6 +19,9 @@ dbt-cloud:
 
 models:
   dbx_dbt_demo:
+    +persist_docs:
+      relation: true
+      columns: true
     bronze:
       +materialized: view
       +schema: bronze
