@@ -1,0 +1,67 @@
+version: 2
+
+models:
+  - name: gold_customer_360
+    description: "{{ doc('gold_customer_360') }}"
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: customer_key
+        description: "Surrogate key from silver_customers. One row per unique customer."
+        data_type: int
+        constraints:
+          - type: not_null
+      - name: first_name
+        description: "Customer first name."
+        data_type: string
+        constraints:
+          - type: not_null
+      - name: last_name
+        description: "Customer last name."
+        data_type: string
+        constraints:
+          - type: not_null
+      - name: email
+        description: "Customer email address. Null for in-store-only customers."
+        data_type: string
+      - name: phone
+        description: "Customer phone number."
+        data_type: string
+      - name: country
+        description: "Two-letter ISO country code. Null for in-store-only customers."
+        data_type: string
+      - name: customer_type
+        description: "Cross-channel classification: cross_channel, online_only, or in_store_only."
+        data_type: string
+        constraints:
+          - type: not_null
+      - name: total_orders
+        description: "Total number of orders/transactions excluding cancelled."
+        data_type: bigint
+        constraints:
+          - type: not_null
+      - name: completed_orders
+        description: "Number of successfully completed orders."
+        data_type: bigint
+        constraints:
+          - type: not_null
+      - name: returned_orders
+        description: "Number of returned orders."
+        data_type: bigint
+        constraints:
+          - type: not_null
+      - name: preferred_channel
+        description: "Channel with the most completed orders: online or in_store. Null if the customer has no completed orders."
+        data_type: string
+      - name: first_order_at
+        description: "Timestamp of the customer's first order across all channels. Null if no orders."
+        data_type: timestamp
+      - name: last_order_at
+        description: "Timestamp of the customer's most recent order across all channels. Null if no orders."
+        data_type: timestamp
+      - name: lifetime_value
+        description: "Sum of all completed order line totals in USD."
+        data_type: decimal(36,2)
+        constraints:
+          - type: not_null

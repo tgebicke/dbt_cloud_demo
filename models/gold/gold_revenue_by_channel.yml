@@ -1,0 +1,34 @@
+version: 2
+
+models:
+  - name: gold_revenue_by_channel
+    description: "{{ doc('gold_revenue_by_channel') }}"
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: order_month
+        description: "First day of the month (truncated from order_timestamp). One row per channel per month."
+        data_type: timestamp
+        constraints:
+          - type: not_null
+      - name: channel
+        description: "Sales channel: online or in_store."
+        data_type: string
+        constraints:
+          - type: not_null
+      - name: order_count
+        description: "Number of distinct completed orders in this channel and month."
+        data_type: bigint
+        constraints:
+          - type: not_null
+      - name: revenue
+        description: "Total revenue from completed orders in USD."
+        data_type: decimal(36,2)
+        constraints:
+          - type: not_null
+      - name: avg_order_value
+        description: "Average revenue per completed order in USD."
+        data_type: decimal(30,6)
+        constraints:
+          - type: not_null

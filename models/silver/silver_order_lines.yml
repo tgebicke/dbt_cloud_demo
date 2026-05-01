@@ -1,0 +1,51 @@
+version: 2
+
+models:
+  - name: silver_order_lines
+    description: "{{ doc('silver_order_lines') }}"
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: order_line_key
+        description: "Source-prefixed surrogate key (e.g. 'shopify-1', 'pos-3001'). Unique across both channels."
+        data_type: string
+        constraints:
+          - type: not_null
+      - name: order_key
+        description: "Foreign key to silver_orders."
+        data_type: string
+        constraints:
+          - type: not_null
+      - name: product_id
+        description: "Foreign key to silver_products. Null if the POS barcode could not be matched to a product."
+        data_type: int
+      - name: sku
+        description: "Product SKU. Null if the POS barcode could not be matched to a product."
+        data_type: string
+      - name: product_name
+        description: "Canonical product name. For unmatched POS items, the cleaned product_name_at_sale is used."
+        data_type: string
+      - name: category
+        description: "Product category. Null if the POS barcode could not be matched to a product."
+        data_type: string
+      - name: quantity
+        description: "Number of units in this line item."
+        data_type: int
+        constraints:
+          - type: not_null
+      - name: unit_price
+        description: "Price per unit in USD. Negative for return line items."
+        data_type: decimal(5,2)
+        constraints:
+          - type: not_null
+      - name: line_total
+        description: "Total value of this line item (quantity * unit_price). Negative for return line items."
+        data_type: decimal(16,2)
+        constraints:
+          - type: not_null
+      - name: source_system
+        description: "Originating source system: shopify or pos."
+        data_type: string
+        constraints:
+          - type: not_null

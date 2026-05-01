@@ -1,0 +1,42 @@
+version: 2
+
+models:
+  - name: silver_products
+    description: "{{ doc('silver_products') }}"
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: product_id
+        description: "Shopify product identifier. Primary reference for product resolution."
+        data_type: int
+        constraints:
+          - type: not_null
+      - name: sku
+        description: "Shopify SKU (e.g. SKU-FOOT-001). Used to join order line items from the online channel."
+        data_type: string
+        constraints:
+          - type: not_null
+      - name: barcode
+        description: "POS barcode (e.g. 700100000001). Used to join transaction line items from the in-store channel. Null if no barcode mapping exists."
+        data_type: string
+      - name: product_name
+        description: "Canonical product display name from Shopify."
+        data_type: string
+        constraints:
+          - type: not_null
+      - name: category
+        description: "Product category: Footwear, Fitness, Electronics, Accessories, Clothing, or Home."
+        data_type: string
+        constraints:
+          - type: not_null
+      - name: price
+        description: "Current list price in USD."
+        data_type: decimal(5,2)
+        constraints:
+          - type: not_null
+      - name: is_active
+        description: "Whether the product is currently active on the Shopify storefront."
+        data_type: boolean
+        constraints:
+          - type: not_null

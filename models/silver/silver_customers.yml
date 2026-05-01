@@ -1,0 +1,52 @@
+version: 2
+
+models:
+  - name: silver_customers
+    description: "{{ doc('silver_customers') }}"
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: customer_key
+        description: "Surrogate key. Stable integer assigned to each unique person across both sources."
+        data_type: int
+        constraints:
+          - type: not_null
+      - name: shopify_customer_id
+        description: "Source customer ID from Shopify. Null for in-store-only customers."
+        data_type: int
+      - name: pos_customer_id
+        description: "Source customer ID from the POS system. Null for online-only customers."
+        data_type: int
+      - name: email
+        description: "Customer email address from Shopify. Null for in-store-only customers."
+        data_type: string
+      - name: first_name
+        description: "Customer first name."
+        data_type: string
+        constraints:
+          - type: not_null
+      - name: last_name
+        description: "Customer last name."
+        data_type: string
+        constraints:
+          - type: not_null
+      - name: phone
+        description: "Customer phone number. The cross-channel matching key."
+        data_type: string
+      - name: country
+        description: "Two-letter ISO country code. Null for in-store-only customers."
+        data_type: string
+      - name: marketing_opt_in
+        description: "Whether the customer opted in to marketing. Null for in-store-only customers."
+        data_type: boolean
+      - name: created_at
+        description: "Earliest known timestamp for this customer across either source."
+        data_type: timestamp
+        constraints:
+          - type: not_null
+      - name: customer_type
+        description: "Cross-channel classification: cross_channel, online_only, or in_store_only."
+        data_type: string
+        constraints:
+          - type: not_null

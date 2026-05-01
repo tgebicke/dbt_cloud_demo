@@ -1,0 +1,46 @@
+version: 2
+
+models:
+  - name: silver_orders
+    description: "{{ doc('silver_orders') }}"
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: order_key
+        description: "Source-prefixed surrogate key (e.g. 'shopify-12', 'pos-3001'). Unique across both channels."
+        data_type: string
+        constraints:
+          - type: not_null
+      - name: customer_key
+        description: "Foreign key to silver_customers. Null for POS guest transactions with no loyalty card."
+        data_type: int
+      - name: order_status
+        description: "Normalized order status: completed, returned, or cancelled."
+        data_type: string
+        constraints:
+          - type: not_null
+      - name: channel
+        description: "Sales channel: online (Shopify) or in_store (POS)."
+        data_type: string
+        constraints:
+          - type: not_null
+      - name: device_type
+        description: "Device used for online orders: desktop, mobile, or tablet. Null for in-store orders."
+        data_type: string
+      - name: promo_code
+        description: "Promotional code applied at checkout. Online channel only. Null if no promo applied."
+        data_type: string
+      - name: order_timestamp
+        description: "Timestamp of the order or transaction. Online orders are UTC; POS orders are local store time."
+        data_type: timestamp
+        constraints:
+          - type: not_null
+      - name: store_id
+        description: "Foreign key to bronze_pos_stores. In-store orders only. Null for online orders."
+        data_type: int
+      - name: source_system
+        description: "Originating source system: shopify or pos."
+        data_type: string
+        constraints:
+          - type: not_null
